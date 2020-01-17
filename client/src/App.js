@@ -33,8 +33,8 @@ class App extends React.Component {
     return (
       <div className="App">       
       <Header />
-      <div className = 'main-container'>
-
+      <div className = 'main-container'> 
+      Team
           <PlayerCard
             key = {this.state.key}
             data={this.state.data}

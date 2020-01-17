@@ -1,20 +1,25 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { render } from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
+import * as rtl from "@testing-library/react";
+
+
+import App from './App';
+import Header from './components/Header';
+import PlayerCard from './components/PlayerCard';
 
 it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const page = rtl.render(<App />);
+  expect(page).toBeVisible;
 });
 
 test("Header is displayed", () => {
-  const { getByTestId } = render(<App />);
-  getByTestId(/header/i);
+  const { getByText } = rtl.render(<Header />);
+  const displayElement = getByText(/world/i);
+  expect(displayElement).toBeInTheDocument();
 });
 
-test("search is found in search bar", () => {
-  const { getByText } = render(<App />);
-  getByText(/search/i);
+test("Player is found", () => {
+  const { getByText } = rtl.render(<App />);
+  const displayElement = getByText(/team/i);
+  expect(displayElement).toBeInTheDocument();
 });
